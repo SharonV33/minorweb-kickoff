@@ -1,12 +1,12 @@
 const url = 'https://600ff44f6c21e1001704fac2.mockapi.io/minor-web/api/'
 
 // GET REQUEST
-const teams = fetch(`${url}/squads/1/teams/1/members/`)
+const teams = fetch(`${url}squads/1/teams/1/members/`)
     .then(response => response.json())
     .then(data => console.log('fetch', data));
 
 // PUT REQUEST
-const putData = {
+const myData = {
     id:666,
     teamId:1,
     name:'Sharon',
@@ -28,6 +28,16 @@ const putData = {
 
 async function postData(url = '', data = {}) {
     const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    return response.json();
+}
+async function putData(url = '', data = {}) {
+    const response = await fetch(url, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -37,7 +47,7 @@ async function postData(url = '', data = {}) {
     return response.json();
 }
 
-postData(`${url}/squads/1/teams/1/members/1`, putData)
+postData(`${url}squads/1/teams/1/members/1`, myData)
     .then(data => {
         console.log('put', data);
     });
