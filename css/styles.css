@@ -1,3 +1,9 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
 .card {
   background-color: black;
   display: flex;
@@ -26,10 +32,26 @@
 
 .info ul {
   list-style: none;
-  display: flex;
   padding: 0;
 }
 
 .info ul li {
   padding-right: 1em;
+}
+
+progress {
+  border-radius: 7px;
+  box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+}
+progress::-webkit-progress-bar {
+  background-color: dimgrey;
+  border-radius: 7px;
+}
+progress::-webkit-progress-value {
+  background-color: darkred;
+  border-radius: 7px;
+}
+
+.into {
+  display: flex;
 }

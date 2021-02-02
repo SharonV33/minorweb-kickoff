@@ -1,53 +1,38 @@
-const url = 'https://600ff44f6c21e1001704fac2.mockapi.io/minor-web/api/'
+const xhr = new XMLHttpRequest()
+const url = 'https://600ff44f6c21e1001704fac2.mockapi.io/minor-web/api/squads/1/teams/1/members'
 
-// GET REQUEST
-const teams = fetch(`${url}squads/1/teams/1/members/`)
-    .then(response => response.json())
-    .then(data => console.log('fetch', data));
-
-// PUT REQUEST
-const myData = {
-    id:666,
-    teamId:1,
-    name:'Sharon',
-    prefix:'',
-    surname:'Veldman',
-    mugshot:'https://avatars.githubusercontent.com/u/45404384?s=460&u=949cf6d4c30b9152da8e3f7e9ef320149dd3e0ac&v=4',
-    githubHandle:'sharonV33',
-    skill: {
-        html: 80,
-        css: 80,
-        js: 60
-    },
-    other: {
-        movies: 'Horror',
-        music: 'Metal',
-        drink: 'beer'
+const userData = {
+    "teamId": "1",
+    "name": "Sharon",
+    "avatar": "https://avatars.githubusercontent.com/u/10921830?s=460&u=d9790f50bebe35de86146b7fcb76906286611703&v=4",
+    "prefix": "",
+    "surname": "Veldman",
+    "mugshot": "https://avatars.githubusercontent.com/u/10921830?s=460&u=d9790f50bebe35de86146b7fcb76906286611703&v=4",
+    "githubHandle": "SharonV33",
+    "other": {
+        "age": "22",
+        "sport": "NaN",
+        "pet": "2 katten",
+        "muziek": "metal",
+        "werkplek": "Thuis"
     }
 }
 
-async function postData(url = '', data = {}) {
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
-async function putData(url = '', data = {}) {
-    const response = await fetch(url, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-    return response.json();
+const postUserData = () => {
+    xhr.open("POST", url, true)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.send(JSON.stringify(userData))
 }
 
-postData(`${url}squads/1/teams/1/members/1`, myData)
-    .then(data => {
-        console.log('put', data);
-    });
+// GET REQUEST
+const teams = fetch(`${url}`)
+    .then(response => response.json())
+    .then(data => console.log('fetch', data));
+
+const fillCard = () => {
+    const card = document.querySelector(".card")
+    const p = document.createElement('p');
+    card.appendChild(p).innerHTML = "sharon"
+}
+
+fillCard()
